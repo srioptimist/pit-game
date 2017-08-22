@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pits">
+    <head>
+        <title>Home | Pits-Game</title>
+        <script src="scripts/angular.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controller.js"></script>
+        <link href="css/pits.css" rel="stylesheet">
+    </head>
+    <body ng-controller="pitsCtrl as pitsC">
+
+        <div class="clear start">
+            <button ng-disabled="pitsOfPlayer1.length" ng-click="initialize()" type="button">Start</button>
+        </div>
+        <div class="clear">
+            <div  ng-repeat="p2 in pitsOfPlayer2 track by $index" class="pit">
+                <span class="stone">{{p2}}</span>
+            </div>
+        </div>
+        <div class="clear-button">
+            <div  ng-if="pitsOfPlayer2.length" ng-repeat="i in [0, 1, 2, 3, 4, 5] track by $index" class="pitButton">
+                <button ng-disabled="togglePlayerAction" ng-click="move('player2',$index+1)" type="button">Move</button>
+            </div>
+        </div>
+        <div class="clear player" ng-if="pitsOfPlayer2.length">
+            <span>Player2</span>
+        </div>
+        </div>
+        <div class="clear">
+            <div  ng-repeat="p1 in pitsOfPlayer1 track by $index" class="pit">
+                <span class="stone">{{p1}}</span>
+            </div>
+        </div>
+        <div class="clear-button">
+            <div  ng-if="pitsOfPlayer1.length" ng-repeat="i in [0, 1, 2, 3, 4, 5] track by $index" class="pitButton">
+                <button ng-disabled="!togglePlayerAction" ng-click="move('player1',$index+1)" type="button">Move</button>
+            </div>
+        </div>
+        <div class="clear player" ng-if="pitsOfPlayer1.length">
+            <span>Player1</span>
+        </div>
+    </body>
+</html>
